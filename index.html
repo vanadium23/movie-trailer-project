@@ -1,0 +1,150 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Vanadium23 Movie Trailers</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <style type="text/css" media="screen">
+        #trailer.modal {
+          max-height: 100%;
+        }
+        #trailer .modal-content {
+          height: 480px;
+          padding: 0px;
+        }
+        #trailer-video {
+          width: 100%;
+          height: 100%;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.modal-trigger', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        $(document).ready(function () {
+          $('.modal-trigger').leanModal({
+            complete: function() {
+              // Delete video when modal closes
+              $("#trailer-video-container").empty();
+            }
+          });
+          // Searching code
+          $movies = $('span.movie-title');
+          $('#search').keyup(function() {
+              // Delete two or more spaces in a row
+              var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+              $movies.parents('.movie').show();
+              $movies.filter(function() {
+                  var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                  return !~text.indexOf(val);
+              }).parents('.movie').hide();
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Navbar with search -->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required placeholder="You can search title here...">
+              <label for="search"><i class="mdi-action-search"></i></label>
+              <i class="mdi-navigation-close"></i>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+     <div class="row">
+      
+    <div class="col s6 m4 movie">
+        <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="http://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg" >
+        </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><i class="mdi-navigation-more-vert right"></i></span>
+               <a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=6hB3S9bIaco>View trailer</a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><span class="movie-title">The Shawshank Redemption</span>(1994) <i class="mdi-navigation-close right"></i></span>
+              <p>
+                Two imprisoned men bond over a number of years,
+                    finding solace and eventual redemption through acts
+                    of common decency.</p>
+              <p><a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=6hB3S9bIaco>View trailer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6 m4 movie">
+        <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="http://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg" >
+        </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><i class="mdi-navigation-more-vert right"></i></span>
+               <a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=yQ5U8suTUw0>View trailer</a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><span class="movie-title">The Dark Knight</span>(2008) <i class="mdi-navigation-close right"></i></span>
+              <p>
+                When the menace known as the Joker wreaks havoc and chaos
+                on the people of Gotham, the caped crusader must
+                come to terms with one of the greatest psychological tests
+                of his ability to fight injustice.</p>
+              <p><a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=yQ5U8suTUw0>View trailer</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6 m4 movie">
+        <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="http://upload.wikimedia.org/wikipedia/en/8/82/Pulp_Fiction_cover.jpg" >
+        </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><i class="mdi-navigation-more-vert right"></i></span>
+               <a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=s7EdQ4FqbhY>View trailer</a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><span class="movie-title">Pulp Fiction</span>(1994) <i class="mdi-navigation-close right"></i></span>
+              <p>
+                The lives of two mob hit men, a boxer, a gangster's wife,
+                and a pair of diner bandits intertwine
+                in four tales of violence and redemption.</p>
+              <p><a class="waves-effect waves-light btn modal-trigger" href="#trailer" data-trailer-youtube-id=s7EdQ4FqbhY>View trailer</a></p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+  </body>
+</html>
